@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>New Boys Hostel — CHANDSAB MAHIBUB TASWALE</title>
+  <style>
+    :root {
+      --bg: #0b0f17; --card:#121827; --muted:#9aa4b2; --text:#e5e7eb; --accent:#3b82f6; --accent-2:#22c55e;
+      --danger:#ef4444; --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; background: radial-gradient(1200px 800px at 10% -10%, #1b2551 0%, transparent 60%), linear-gradient(180deg, #0b0f17, #0b0f17); color: var(--text); }
+    .wrap { min-height: 100svh; display:grid; place-items:center; padding: 32px 16px; }
+
+    .card { width:100%; max-width: 920px; background: linear-gradient(180deg, #121827, #0f1627); border: 1px solid rgba(255,255,255,.06); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; }
+    .grid { display:grid; grid-template-columns: 1.1fr 1fr; }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr;} }
+
+    .hero { padding:32px; background: radial-gradient(600px 300px at 40% -20%, rgba(59,130,246,.25), transparent 60%); border-right:1px solid rgba(255,255,255,.06); }
+    .hero h1 { margin:0 0 8px; font-size: clamp(22px, 3.2vw, 36px); letter-spacing:.3px; }
+    .hero p { margin:6px 0 16px; color: var(--muted); }
+    .hero .badges { display:flex; gap:8px; flex-wrap:wrap; margin: 16px 0 4px; }
+    .badge { padding:6px 10px; border:1px solid rgba(255,255,255,.1); border-radius:999px; font-size:12px; color:#cdd5df; background: rgba(255,255,255,.03); }
+    .address { margin-top:16px; font-size:14px; color:#cbd5e1; line-height:1.6; }
+    .owner { margin-top:8px; color:#cbd5e1; font-weight:600; }
+
+    .panel { padding:28px; }
+
+    .tabs { display:flex; gap:8px; background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); padding:6px; border-radius:12px; width:max-content; }
+    .tab { appearance:none; border:none; background:transparent; color:#cbd5e1; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:600; }
+    .tab.active { background: #0b1221; color:#fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+
+    form { margin-top:16px; display:grid; gap:12px; max-width:420px; }
+    label { font-size:12px; color:#b8c2cf; letter-spacing:.2px; }
+    .row { display:grid; gap:6px; }
+    input { width:100%; padding:12px 12px; border-radius:10px; background:#0b1221; border:1px solid rgba(255,255,255,.08); color:#fff; outline:none; transition:border .2s ease, box-shadow .2s ease; }
+    input:focus { border-color: rgba(59,130,246,.6); box-shadow: 0 0 0 3px rgba(59,130,246,.15); }
+
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.1); background: linear-gradient(180deg, #1a64f5, #3b82f6); color:#fff; font-weight:700; cursor:pointer; box-shadow: 0 6px 16px rgba(59,130,246,.35); }
+    .btn.secondary { background: linear-gradient(180deg, #1a2a45, #0b1221); border:1px solid rgba(255,255,255,.08); box-shadow:none; }
+    .btn.danger { background: linear-gradient(180deg, #8a1f1f, #ef4444); border:1px solid rgba(255,255,255,.12); }
+
+    .muted { color: var(--muted); font-size: 12px; }
+    .error { color: var(--danger); font-size: 13px; }
+    .success { color: var(--accent-2); font-size: 13px; }
+
+    .divider { height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); margin: 18px 0; }
+
+    .list { display:grid; gap:10px; margin-top: 10px; }
+    .pill { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; background:#0b1221; border:1px solid rgba(255,255,255,.06); }
+    .pill b { color:#e5e7eb; }
+
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card grid">
+      <section class="hero">
+        <h1>New Boys Hostel</h1>
+        <p>Student Login & Registration Portal</p>
+        <div class="owner">Managed by <strong>CHANDSAB MAHIBUB TASWALE</strong></div>
+        <div class="address">
+          <strong>Address:</strong><br/>
+          Maharashtra, Pune, Azam Campus
+        </div>
+        <div class="badges">
+          <span class="badge">LocalStorage users</span>
+          <span class="badge">Web Crypto SHA-256</span>
+          <span class="badge">Session token</span>
+          <span class="badge">Responsive</span>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <button class="btn secondary" id="toLogin">Go to Login</button>
+          <button class="btn secondary" id="toRegister">Go to Register</button>
+          <button class="btn" id="toDashboard">Open Dashboard</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="tabs">
+          <button class="tab active" id="tab-register">Register</button>
+          <button class="tab" id="tab-login">Login</button>
+          <button class="tab" id="tab-dash">Dashboard</button>
+        </div>
+
+        <!-- Register -->
+        <form id="form-register" autocomplete="off">
+          <div class="row">
+            <label for="r-name">Full Name</label>
+            <input id="r-name" name="name" value="CHANDSAB MAHIBUB TASWALE" placeholder="Your full name" required minlength="2" />
+          </div>
+          <div class="row">
+            <label for="r-email">Email</label>
+            <input id="r-email" name="email" type="email" placeholder="you@college.edu" required />
+          </div>
+          <div class="row">
+            <label for="r-hostel">Hostel</label>
+            <input id="r-hostel" name="hostel" value="New Boys Hostel" readonly />
+          </div>
+          <div class="row">
+            <label for="r-addr">Address</label>
+            <input id="r-addr" name="address" value="Maharashtra, Pune, Azam Campus" readonly />
+          </div>
+          <div class="row">
+            <label for="r-room">Room Number</label>
+            <input id="r-room" name="room" placeholder="e.g. 201" required />
+          </div>
+          <div class="row">
+            <label for="r-pass">Password</label>
+            <input id="r-pass" name="password" type="password" placeholder="At least 6 characters" required minlength="6" />
+          </div>
+          <div class="row">
+            <button class="btn" type="submit">Create account</button>
+            <span id="r-msg" class="muted"></span>
+          </div>
+        </form>
+
+        <!-- Login -->
+        <form id="form-login" class="hidden" autocomplete="off">
+          <div class="row">
+            <label for="l-email">Email</label>
+            <input id="l-email" name="email" type="email" placeholder="you@college.edu" required />
+          </div>
+          <div class="row">
+            <label for="l-pass">Password</label>
+            <input id="l-pass" name="password" type="password" placeholder="Your password" required />
+          </div>
+          <div class="row">
+            <button class="btn" type="submit">Login</button>
+            <span id="l-msg" class="muted"></span>
+          </div>
+        </form>
+
+        <!-- Dashboard -->
+        <div id="dash" class="hidden">
+          <div class="row" style="margin-top:12px">
+            <div id="welcome" style="font-weight:700; font-size:18px;">Welcome 👋</div>
+            <div class="muted" id="sessionInfo"></div>
+          </div>
+          <div class="divider"></div>
+
+          <h3 style="margin:0 0 10px">Quick Actions</h3>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" id="logout">Logout</button>
+            <button class="btn secondary" id="seed">Add Demo Students</button>
+            <button class="btn danger" id="reset">Reset Local Data</button>
+          </div>
+
+          <h3 style="margin:18px 0 8px">Registered Students</h3>
+          <div id="studentList" class="list"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+  const $ = (q) => document.querySelector(q);
+  const $$ = (q) => Array.from(document.querySelectorAll(q));
+  const encoder = new TextEncoder();
+
+  async function sha256(str){
+    const buf = await crypto.subtle.digest('SHA-256', encoder.encode(str));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+
+  function loadUsers(){ return JSON.parse(localStorage.getItem('hm_users')||'[]'); }
+  function saveUsers(list){ localStorage.setItem('hm_users', JSON.stringify(list)); }
+  function setSession(session){ session?localStorage.setItem('hm_session', JSON.stringify(session)):localStorage.removeItem('hm_session'); }
+  function getSession(){ try{return JSON.parse(localStorage.getItem('hm_session')||'null');}catch{return null;} }
+  function uid(){ return Math.random().toString(36).slice(2)+Date.now().toString(36); }
+  function formatDate(ts){ return new Date(ts).toLocaleString(); }
+  function toast(el,msg,type){ el.textContent=msg; el.className=type||'muted'; setTimeout(()=>{ el.textContent=''; el.className='muted'; },3000); }
+
+  function activate(view){
+    $$('#form-register, #form-login, #dash').forEach(n=>n.classList.add('hidden'));
+    $$('#tab-register, #tab-login, #tab-dash').forEach(n=>n.classList.remove('active'));
+    if(view==='register'){ $('#form-register').classList.remove('hidden'); $('#tab-register').classList.add('active'); }
+    if(view==='login'){ $('#form-login').classList.remove('hidden'); $('#tab-login').classList.add('active'); }
+    if(view==='dash'){ $('#dash').classList.remove('hidden'); $('#tab-dash').classList.add('active'); renderStudents(); renderSession(); }
+  }
+
+  $('#tab-register').onclick=()=>activate('register');
+  $('#tab-login').onclick=()=>activate('login');
+  $('#tab-dash').onclick=()=>activate('dash');
+  $('#toLogin').onclick=()=>activate('login');
+  $('#toRegister').onclick=()=>activate('register');
+  $('#toDashboard').onclick=()=>activate('dash');
+
+  $('#form-register').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const name=$('#r-name').value.trim();
+    const email=$('#r-email').value.trim().toLowerCase();
+    const room=$('#r-room').value.trim();
+    const pass=$('#r-pass').value;
+    const msg=$('#r-msg');
+    if(!name||!email||!room||pass.length<6) return toast(msg,'Fill all fields correctly.','error');
+
+    const users=loadUsers();
+    if(users.some(u=>u.email===email)) return toast(msg,'Email already registered.','error');
+
+    const passwordHash=await sha256(pass);
+    users.push({id:uid(),name,email,room,passwordHash,createdAt:Date.now()});
+    saveUsers(users);
+
+    setSession({email,token:uid(),loginAt:Date.now()});
+    toast(msg,'Account created!','success');
+    activate('dash');
+  });
+
+  $('#form-login').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const email=$('#l-email').value.trim().toLowerCase();
+    const pass=$('#l-pass').value; const msg=$('#l-msg');
+    const users=loadUsers();
+    const user=users.find(u=>u.email===email);
+    if(!user) return toast(msg,'No account with this email.','error');
+    const hash=await sha256(pass);
+    if(hash!==user.passwordHash) return toast(msg,'Wrong password.','error');
+
+    setSession({email,token:uid(),loginAt:Date.now()});
+    toast(msg,'Logged in!','success');
+    activate('dash');
+  });
+
+  function renderSession(){
+    const s=getSession(); const users=loadUsers(); const me=s?users.find(u=>u.email===s.email):null;
+    $('#welcome').textContent=me?`Welcome, ${me.name} (Room ${me.room}) 👋`:'Welcome 👋';
+    $('#sessionInfo').textContent=s?`Logged in as ${s.email} • since ${formatDate(s.loginAt)}`:'Not logged in';
+  }
+
+  function renderStudents(){
+    const list=$('#studentList'); const users=loadUsers();
+    if(!users.length){ list.innerHTML='<div class="muted">No students yet.</div>'; return; }
+    list.innerHTML='';
+    users.forEach(u=>{
+      const row=document.createElement('div'); row.className='pill';
+      row.innerHTML=`<div><b>${u.name}</b> (Room ${u.room})<div class="muted">${u.email}</div></div>
+                     <div class="muted">Joined: ${formatDate(u.createdAt)}</div>`;
+      list.appendChild(row);
+    });
+  }
+
+  $('#logout').onclick=()=>{ setSession(null); renderSession(); activate('login'); };
+  $('#reset').onclick=()=>{ if(confirm('Delete all data?')){ localStorage.clear(); renderStudents(); renderSession(); activate('register'); } };
+  $('#seed').onclick=()=>{ const users=loadUsers(); const sample=[{name:'Aarav Sharma',email:'aarav@college.edu',room:'101'},{name:'Ishita Mehta',email:'ishita@college.edu',room:'102'},{name:'Kabir Khan',email:'kabir@college.edu',room:'103'}]; sample.forEach(s=>{ if(!users.some(u=>u.email===s.email)){ users.push({id:uid(),...s,passwordHash:'demo',createdAt:Date.now()-Math.random()*1e8}); } }); saveUsers(users); renderStudents(); };
+
+  (function init(){ getSession()?activate('dash'):activate('register'); })();
+  </script>
+</body>
+</html>
